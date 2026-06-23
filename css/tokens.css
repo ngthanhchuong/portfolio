@@ -1,0 +1,97 @@
+:root {
+  /* Primitives — color */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-ink: #1A1A1A;
+  --color-surface-dark: #141414;
+  --color-gray-300: #C4C4C4;
+  --color-gray-200: #D9D9D9;
+  --color-lime: #BCFF2F;
+  --color-orange: #FF751A;
+  --color-blue: #1A5FFF;
+  --color-green: #13B879;
+
+  /* Primitives — blue/paper scale (confirmed live from Figma Hero fetch, not yet in DESIGN.md) */
+  --color-blue-500: #4B73F9;
+  --color-blue-50: #F1F4FF;
+  --color-paper-50: #FEFEFE;
+
+  /* Primitives — Section Palette (decorative, applied when a section first uses them) */
+  --color-pink-50: #FFF9FF;
+  --color-pink-100: #FFF3FF;
+  --color-pink-200: #FFE6FF;
+  --color-pink-300: #FED7FF;
+  --color-pink-400: #FEC6FF;
+  --color-pink-500: #FEB6FF;
+  --color-pink-600: #DA9DDB;
+  --color-pink-700: #B080B0;
+  --color-pink-800: #836083;
+  --color-pink-900: #584258;
+  --color-periwinkle-50: #F7F8FD;
+  --color-periwinkle-100: #EEF2FB;
+  --color-periwinkle-200: #DCE2F6;
+  --color-periwinkle-300: #C6D1F1;
+  --color-periwinkle-400: #AEBDEB;
+  --color-periwinkle-500: #97ABE5;
+
+  /* Semantic colors */
+  --color-bg-primary: var(--color-white);
+  --color-bg-inverse: var(--color-ink);
+  --color-bg-subtle: #1A1A1A12;
+  --color-text-primary: var(--color-ink);
+  --color-text-secondary: #1A1A1A99;
+  --color-text-muted: #1A1A1A59;
+  --color-text-inverse: var(--color-white);
+  --color-text-brand: var(--color-lime);
+  --color-border-subtle: #1A1A1A12;
+  --color-border-strong: var(--color-ink);
+  --color-brand-primary: var(--color-lime);
+  --color-accent-orange: var(--color-orange);
+  --color-accent-blue: var(--color-blue);
+  --color-accent-green: var(--color-green);
+
+  /* Fonts */
+  --font-primary: 'Raleway', sans-serif;
+  --font-display: 'Clash Display', sans-serif;
+
+  /* Spacing */
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-sm: 16px;
+  --space-md: 20px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+  --space-5xl: 80px;
+  --space-6xl: 120px;
+  --space-7xl: 160px;
+
+  /* Layout */
+  --layout-page-margin: 120px;
+  --layout-section-padding-y: 140px;
+  --layout-grid-columns: 12;
+  --layout-grid-gutter: 24px;
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+  --radius-3xl: 32px;
+  --radius-full: 1000px;
+
+  /* Shadow */
+  --shadow-sm: 0 4px 8px 0 #0000000D;
+  --shadow-md: 0 8px 16px 0 #00000014;
+  --shadow-lg: 0 12px 24px 0 #0000001A;
+  --shadow-xl: 0 16px 32px 0 #0000001F;
+
+  /* Focus ring (accessibility) */
+  --focus-ring-color: var(--color-lime);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}

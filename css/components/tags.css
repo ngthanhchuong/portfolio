@@ -1,0 +1,22 @@
+.tags {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 160px;
+  list-style: none;
+}
+
+.tags__item {
+  font: 700 16px/2 var(--font-primary);
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+}
+
+.tags__item:not(:last-child)::after {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-top: 6px;
+  background: url("../../assets/icons/tag-separator-star.svg") no-repeat center / contain;
+}
