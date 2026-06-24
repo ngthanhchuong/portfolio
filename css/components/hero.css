@@ -102,7 +102,9 @@
 
 .hero__photo {
   width: 357px;
-  height: 389px;
+  /* Match the photo's 4:5 ratio (1440x1800) so the full portrait shows
+     without the head being cropped. */
+  aspect-ratio: 4 / 5;
   border-radius: 4px;
   overflow: hidden;
   flex-shrink: 0;
