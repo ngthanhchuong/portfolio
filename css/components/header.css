@@ -6,8 +6,8 @@
   flex-wrap: wrap;
   gap: var(--space-md);
   /* Sticky so it stays in view; it morphs into a floating pill once scrolled
-     (see .is-scrolled). Width comes from the flex stretch of .hero-viewport,
-     so adding side margins in the scrolled state shrinks it without overflow. */
+     (see .is-scrolled). At the top it stretches full-width; when scrolled it
+     hugs its content and centres via align-self. */
   position: sticky;
   top: var(--space-sm);
   z-index: 50;
@@ -18,13 +18,20 @@
               box-shadow 0.3s var(--ease-out-soft);
 }
 
-/* Scrolled: floating white pill with dark logo + nav (CV button stays dark). */
+/* Scrolled: compact floating white pill that hugs its content and is centred,
+   with dark logo + nav (CV button stays dark). */
 .site-header.is-scrolled {
-  margin: 0 var(--space-2xl);
+  align-self: center;
+  margin: 0;
   padding: var(--space-xs) var(--space-lg);
   background: var(--color-white);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-lg);
+}
+
+/* Pull the nav back beside the logo so logo + nav + CV sit together, centred. */
+.site-header.is-scrolled .site-nav {
+  margin-left: 0;
 }
 
 .site-header.is-scrolled .site-nav a {
