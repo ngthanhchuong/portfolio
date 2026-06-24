@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/components/hero.css">
   <link rel="stylesheet" href="css/components/tags.css">
   <link rel="stylesheet" href="css/components/footer-credit.css">
+  <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -55,30 +56,46 @@
           </span>
         </div>
 
-        <h1 class="hero__name" id="hero-heading">Chuong Nguyen</h1>
+        <h1 class="hero__name" id="hero-heading">
+          <span class="hero__name-line"><span class="hero__name-line-inner">Chuong Nguyen</span></span>
+        </h1>
 
         <p class="hero__subtitle">I turn complex products into interfaces people understand at a glance.</p>
 
         <div class="hero__bottom">
           <div class="hero__bottom-left">
-            <ul class="tags" aria-label="Specialties">
-              <li class="tags__item">UX UI Designer</li>
-              <li class="tags__item">Product Designer</li>
-              <li class="tags__item">Product Thinking</li>
-              <li class="tags__item">Design System</li>
-            </ul>
+            <div class="tags" role="list" aria-label="Specialties">
+              <ul class="tags__track">
+                <li class="tags__item">UX/UI Designer</li>
+                <li class="tags__item">Product Designer</li>
+                <li class="tags__item">Product Thinking</li>
+                <li class="tags__item">Design System</li>
+                <li class="tags__item">Interaction Design</li>
+                <li class="tags__item">Prototyping</li>
+                <li class="tags__item">User Research</li>
+                <li class="tags__item">Design Tokens</li>
+                <!-- Duplicate set (hidden from AT) so the vertical loop is seamless. -->
+                <li class="tags__item" aria-hidden="true">UX/UI Designer</li>
+                <li class="tags__item" aria-hidden="true">Product Designer</li>
+                <li class="tags__item" aria-hidden="true">Product Thinking</li>
+                <li class="tags__item" aria-hidden="true">Design System</li>
+                <li class="tags__item" aria-hidden="true">Interaction Design</li>
+                <li class="tags__item" aria-hidden="true">Prototyping</li>
+                <li class="tags__item" aria-hidden="true">User Research</li>
+                <li class="tags__item" aria-hidden="true">Design Tokens</li>
+              </ul>
+            </div>
 
-            <div class="footer-credit">
-              <div class="footer-credit__designer">
-                <p class="footer-credit__label">Designed by</p>
-                <p class="footer-credit__name">Chuong Nguyen</p>
-              </div>
-              <a href="#about" class="footer-credit__scroll" aria-label="Scroll down to About me">
-                <img src="assets/icons/scroll-button.svg" alt="" class="footer-credit__scroll-icon">
-                <span>Scroll down</span>
-              </a>
+            <div class="footer-credit__designer">
+              <p class="footer-credit__label">Designed by</p>
+              <p class="footer-credit__name">Chuong Nguyen</p>
             </div>
           </div>
+
+          <a href="#about" class="footer-credit__scroll" aria-label="Scroll down to About me">
+            <img src="assets/icons/scroll-button.svg" alt="" class="footer-credit__scroll-icon">
+            <span>Scroll down</span>
+          </a>
 
           <div class="hero__photo">
             <img src="assets/images/profile-photo.png" alt="Portrait of Chuong Nguyen smiling with arms crossed, wearing glasses and an olive polo shirt">

@@ -1,0 +1,158 @@
+/* ===========================================================================
+   Animations — hero entrance choreography + micro-interactions.
+   Entrance plays once on load; loops/hover effects are continuous.
+   All effects are disabled under prefers-reduced-motion (see bottom).
+   =========================================================================== */
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-fade-down {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-name-reveal {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+
+/* Lime glow ring breathing out from the "available" dot. */
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(188, 255, 47, 0.5); }
+  50%      { box-shadow: 0 0 0 5px rgba(188, 255, 47, 0); }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+/* Moves the skills track up by exactly one of its two copies. */
+@keyframes marquee-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+/* --- Entrance: staggered fade (header + hero elements) -------------------- */
+.site-header {
+  animation: hero-fade-down var(--dur-entrance) var(--ease-out-soft) both;
+}
+
+.hero__eyebrow,
+.badge,
+.hero__subtitle,
+.tags,
+.footer-credit__designer,
+.footer-credit__scroll,
+.hero__photo {
+  opacity: 0;
+  animation: hero-fade-up var(--dur-entrance) var(--ease-out-soft) both;
+}
+
+.hero__eyebrow  { animation-delay: 0.15s; }
+.badge          { animation-delay: 0.25s; }
+.hero__photo    { animation-delay: 0.45s; }
+.hero__subtitle { animation-delay: 0.55s; }
+.tags                    { animation-delay: 0.65s; }
+.footer-credit__designer { animation-delay: 0.80s; }
+.footer-credit__scroll   { animation-delay: 0.90s; }
+
+/* --- Entrance: name reveal by line (mask slide-up) ----------------------- */
+.hero__name-line {
+  display: block;
+  overflow: hidden;
+  /* Padding gives descenders (g, y) room inside the mask; negative margin
+     collapses the resulting gap so line spacing matches the static design. */
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.hero__name-line-inner {
+  display: block;
+  transform: translateY(110%);
+  animation: hero-name-reveal 0.9s var(--ease-out-soft) both;
+  animation-delay: 0.35s;
+}
+
+/* --- Micro-interaction: "available" dot pulse ---------------------------- */
+.badge__dot {
+  border-radius: 50%;
+  animation: badge-pulse 1.9s var(--ease-in-out-soft) infinite;
+}
+
+/* --- Micro-interaction: scroll-down arrow bounce ------------------------- */
+.footer-credit__scroll-icon {
+  animation: scroll-bounce 1.7s var(--ease-in-out-soft) infinite;
+}
+
+/* --- Loop: vertical skills marquee --------------------------------------- */
+.tags__track {
+  animation: marquee-up 16s linear infinite;
+}
+
+/* --- Micro-interaction: nav link underline on hover/focus ---------------- */
+.site-nav a {
+  position: relative;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-fast) var(--ease-out-soft);
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* --- Micro-interaction: profile photo zoom on hover ---------------------- */
+.hero__photo {
+  transition: box-shadow 0.4s var(--ease-out-soft);
+}
+
+.hero__photo img {
+  transition: transform 0.5s var(--ease-out-soft);
+}
+
+.hero__photo:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+.hero__photo:hover img {
+  transform: scale(1.05);
+}
+
+/* --- Reduced motion: hold the final, static state ------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .hero__eyebrow,
+  .badge,
+  .hero__subtitle,
+  .tags,
+  .tags__track,
+  .footer-credit__designer,
+  .footer-credit__scroll,
+  .hero__photo,
+  .hero__name-line-inner,
+  .badge__dot,
+  .footer-credit__scroll-icon {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero__photo:hover img {
+    transform: none !important;
+  }
+}
