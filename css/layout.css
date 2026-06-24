@@ -4,3 +4,36 @@ html, body {
      creating a scroll container, which would break the sticky header. */
   overflow-x: clip;
 }
+
+/* Decorative column grid (Figma "grid" frame): faint vertical hairlines at the
+   left edge, centre, photo edge and right edge of the content box. Sits behind
+   the content, spanning the full height of the hero. */
+.grid-lines {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50px;
+  right: 50px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.grid-lines span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-paper-50);
+  opacity: 0.16;
+}
+
+.grid-lines span:nth-child(1) { left: 0; }
+.grid-lines span:nth-child(2) { left: 50%; }
+.grid-lines span:nth-child(3) { right: 357px; } /* aligns with the photo's left edge */
+.grid-lines span:nth-child(4) { right: 0; }
+
+/* Keep page content above the grid overlay. */
+#main-content {
+  position: relative;
+  z-index: 1;
+}
