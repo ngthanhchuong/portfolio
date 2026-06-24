@@ -61,8 +61,12 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(56px, 11vw, 160px);
-  line-height: 1.25;
+  /* Fills the content width (viewport minus the ~110px of side padding) on one
+     line at every width. 8.1 = measured advance of "Chuong Nguyen" per 1em in
+     Clash Display 700, with a small safety margin so it never clips. */
+  font-size: calc((100vw - 110px) / 8.1);
+  line-height: 1.1;
+  white-space: nowrap;
   color: var(--color-blue-50);
 }
 
@@ -80,7 +84,9 @@
   flex: 1 0 0;
   width: 100%;
   gap: var(--space-xl);
-  padding: var(--space-6xl) 50px var(--space-2xl);
+  /* No horizontal padding: the hero already pads 50px, so the bottom row
+     aligns to the same left/right edges as the eyebrow, name and subtitle. */
+  padding: var(--space-6xl) 0 var(--space-2xl);
   flex-wrap: wrap;
 }
 
@@ -89,7 +95,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-self: stretch;
-  max-width: 170px;
+  max-width: 190px;
   gap: var(--space-xl);
 }
 

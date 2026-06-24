@@ -1,8 +1,21 @@
+/* Skills marquee: a masked viewport (.tags) over a vertically scrolling track
+   (.tags__track). The track holds the skill list twice; the loop animation in
+   animations.css moves it up by exactly one copy (-50%) for a seamless cycle.
+   Each item is a uniform unit (text line + star separator) so the seam is even. */
 .tags {
+  /* Fixed window height so overflow masks the loop instead of growing to the
+     full track height; sized to roughly match the photo column. */
+  height: 220px;
+  width: 100%;
+  overflow: hidden;
+  /* Fade the top and bottom edges so items appear/disappear softly. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+}
+
+.tags__track {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  width: 160px;
   list-style: none;
 }
 
@@ -10,13 +23,14 @@
   font: 700 16px/2 var(--font-primary);
   text-transform: uppercase;
   color: var(--color-brand-primary);
+  white-space: nowrap;
 }
 
-.tags__item:not(:last-child)::after {
+.tags__item::after {
   content: "";
   display: block;
   width: 16px;
   height: 16px;
-  margin-top: 6px;
+  margin: 6px 0;
   background: url("../../assets/icons/tag-separator-star.svg") no-repeat center / contain;
 }

@@ -1,7 +1,7 @@
 .site-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   padding: 50px;
   flex-wrap: wrap;
@@ -68,6 +68,8 @@
   align-items: center;
   gap: var(--space-xl);
   flex-wrap: wrap;
+  /* Push nav + the CV button to the right; logo stays at the left edge. */
+  margin-left: auto;
 }
 
 .site-nav a {
