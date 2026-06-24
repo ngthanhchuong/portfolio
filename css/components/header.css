@@ -2,10 +2,46 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
   padding: 50px;
   flex-wrap: wrap;
   gap: var(--space-md);
+  /* Sticky so it stays in view; it morphs into a floating pill once scrolled
+     (see .is-scrolled). Width comes from the flex stretch of .hero-viewport,
+     so adding side margins in the scrolled state shrinks it without overflow. */
+  position: sticky;
+  top: var(--space-sm);
+  z-index: 50;
+  transition: margin 0.3s var(--ease-out-soft),
+              padding 0.3s var(--ease-out-soft),
+              background-color 0.3s var(--ease-out-soft),
+              border-radius 0.3s var(--ease-out-soft),
+              box-shadow 0.3s var(--ease-out-soft);
+}
+
+/* Scrolled: floating white pill with dark logo + nav (CV button stays dark). */
+.site-header.is-scrolled {
+  margin: 0 var(--space-2xl);
+  padding: var(--space-xs) var(--space-lg);
+  background: var(--color-white);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+}
+
+.site-header.is-scrolled .site-nav a {
+  color: var(--color-ink);
+}
+
+.site-header.is-scrolled .site-nav a:hover,
+.site-header.is-scrolled .site-nav a:focus-visible {
+  color: var(--color-black);
+}
+
+/* Flip the white logo glyphs to black; the lime star is left untouched. */
+.site-header.is-scrolled .logo__mark-c,
+.site-header.is-scrolled .logo__mark-superscript,
+.site-header.is-scrolled .logo__wordmark-name,
+.site-header.is-scrolled .logo__wordmark-subtitle {
+  filter: brightness(0);
 }
 
 .logo {
@@ -28,6 +64,14 @@
   inset: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Smooth the white -> black flip when the header becomes a pill. */
+.logo__mark-c,
+.logo__mark-superscript,
+.logo__wordmark-name,
+.logo__wordmark-subtitle {
+  transition: filter 0.3s var(--ease-out-soft);
 }
 
 .logo__mark-superscript {
@@ -76,6 +120,7 @@
   font: 500 16px var(--font-primary);
   color: var(--color-blue-50);
   text-decoration: none;
+  transition: color 0.25s var(--ease-out-soft);
 }
 
 .site-nav a:hover,

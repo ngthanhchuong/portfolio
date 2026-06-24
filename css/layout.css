@@ -1,4 +1,6 @@
 html, body {
   width: 100%;
-  overflow-x: hidden;
+  /* clip (not hidden) so horizontal overflow is still contained without
+     creating a scroll container, which would break the sticky header. */
+  overflow-x: clip;
 }
