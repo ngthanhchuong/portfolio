@@ -1,0 +1,206 @@
+/* ===========================================================================
+   About Me — a full-screen intro (heading + faint portrait + running role
+   marquee) followed by a bio row (portrait + name + paragraph). Sits on the
+   mid-graphite section background, directly below the blue hero.
+   =========================================================================== */
+.about {
+  position: relative;
+  /* overflow-clip contains the off-canvas clover and the marquee tails without
+     creating a scroll container (which would break the sticky header). */
+  overflow: clip;
+  padding: 0 50px;
+  background: var(--color-surface-mid);
+  color: var(--color-paper-50);
+}
+
+/* --- Intro screen -------------------------------------------------------- */
+.about__intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 100vh;
+  padding: var(--space-6xl) 0;
+  border-bottom: 1px solid rgba(254, 254, 254, 0.2);
+}
+
+/* Lift the real content above the faint portrait + clover. */
+.about__eyebrow,
+.about__heading,
+.about__roles {
+  position: relative;
+  z-index: 1;
+}
+
+/* Faint portrait, centred and slightly right, bleeding the full block height. */
+.about__intro-photo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: min(68%, 983px);
+  transform: translateX(-32%);
+  opacity: 0.1;
+  overflow: hidden;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__intro-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+/* Decorative four-petal mark peeking in from the lower-right. */
+.about__clover {
+  position: absolute;
+  right: -250px;
+  /* Anchored low so the mark straddles the intro/bio divide, as in Figma. */
+  top: 78%;
+  width: 600px;
+  height: 600px;
+  transform: translateY(-50%);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font: italic 400 20px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.about__star {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.about__heading {
+  margin: 0;
+  max-width: 1240px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  /* 90px at the 1440 design width, scaling down with the viewport. */
+  font-size: clamp(34px, 6.25vw, 90px);
+  line-height: 1.12;
+  color: var(--color-paper-50);
+}
+
+/* --- Role marquee (horizontal, looping) ---------------------------------- */
+.about__roles {
+  width: 100%;
+  margin-top: var(--space-2xs);
+  overflow: hidden;
+  /* Soften the left/right edges so roles enter and leave the strip gently. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 92%, transparent 100%);
+}
+
+.about__roles-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  list-style: none;
+}
+
+.about__role {
+  display: flex;
+  align-items: center;
+  font: 700 20px var(--font-primary);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-brand-primary);
+}
+
+.about__role::after {
+  content: "";
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0 var(--space-lg);
+  background: url("../../assets/icons/tag-separator-star.svg") no-repeat center / contain;
+}
+
+/* --- Bio row ------------------------------------------------------------- */
+.about__bio {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5xl);
+  padding: var(--space-5xl) 0 var(--space-7xl);
+  border-bottom: 1px solid rgba(254, 254, 254, 0.2);
+}
+
+.about__bio-photo {
+  flex-shrink: 0;
+  width: 265px;
+  aspect-ratio: 265 / 422;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.about__bio-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about__bio-text {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.about__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 6.67vw, 96px);
+  line-height: 1.05;
+  color: var(--color-paper-50);
+}
+
+.about__bio-copy p {
+  margin: 0;
+  font: 400 clamp(16px, 1.67vw, 24px) / 2 var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 900px) {
+  .about__bio {
+    flex-direction: column;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-6xl);
+  }
+
+  .about__bio-photo {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 16 / 11;
+  }
+
+  .about__bio-photo img {
+    object-position: center 22%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 0 var(--space-lg);
+  }
+
+  .about__intro {
+    padding: var(--space-5xl) 0;
+  }
+}
