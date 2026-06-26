@@ -1,0 +1,145 @@
+/* ===========================================================================
+   About Me — Intro: a full-screen heading with a faint portrait behind it and
+   a running role marquee. Sits on the mid-graphite section background, directly
+   below the blue hero. (The bio row is added in a follow-up.)
+   =========================================================================== */
+.about {
+  position: relative;
+  /* overflow-clip contains the off-canvas clover and the marquee tails without
+     creating a scroll container (which would break the sticky header). */
+  overflow: clip;
+  padding: 0 50px;
+  background: var(--color-surface-mid);
+  color: var(--color-paper-50);
+}
+
+/* --- Intro screen -------------------------------------------------------- */
+.about__intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 100vh;
+  padding: var(--space-6xl) 0;
+  border-bottom: 1px solid rgba(254, 254, 254, 0.2);
+}
+
+/* Lift the real content above the faint portrait + clover. */
+.about__eyebrow,
+.about__heading,
+.about__roles {
+  position: relative;
+  z-index: 1;
+}
+
+/* Faint portrait — the fixed 983×1000 box from Figma (node 302:6699), pinned to
+   the top and horizontally centred on the frame centre offset 178.5px to the
+   left, which lands its left edge on the content start at the 1440 design width.
+   overflow:clip on .about contains the right/bottom bleed on smaller viewports. */
+.about__intro-photo {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 178.5px);
+  width: 983px;
+  max-width: 983px;
+  height: 1000px;
+  max-height: 1000px;
+  transform: translateX(-50%);
+  opacity: 0.1;
+  overflow: hidden;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__intro-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+/* Decorative four-petal mark peeking in from the lower-right. */
+.about__clover {
+  position: absolute;
+  right: -250px;
+  top: 78%;
+  width: 600px;
+  height: 600px;
+  transform: translateY(-50%);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* icon→label gap, per Figma */
+  font: italic 400 20px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.about__star {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.about__heading {
+  margin: 0;
+  max-width: 1240px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  /* 90px at the 1440 design width, scaling down with the viewport. */
+  font-size: clamp(34px, 6.25vw, 90px);
+  /* Clash Display "normal" leading ≈ 1.2 — matches the 333px / 3-line block. */
+  line-height: 1.2;
+  color: var(--color-paper-50);
+}
+
+/* --- Role marquee (horizontal, looping) ---------------------------------- */
+.about__roles {
+  width: 100%;
+  overflow: hidden;
+  /* Soften the left/right edges so roles enter and leave the strip gently. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 92%, transparent 100%);
+}
+
+.about__roles-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  list-style: none;
+}
+
+.about__role {
+  display: flex;
+  align-items: center;
+  font: 700 20px/2 var(--font-primary);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-brand-primary);
+}
+
+.about__role::after {
+  content: "";
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0 6px; /* tight star spacing, per Figma Job Titles Container */
+  background: url("../../assets/icons/tag-separator-star.svg") no-repeat center / contain;
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 600px) {
+  .about {
+    padding: 0 var(--space-lg);
+  }
+
+  .about__intro {
+    padding: var(--space-5xl) 0;
+  }
+}

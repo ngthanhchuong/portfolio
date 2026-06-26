@@ -6,6 +6,10 @@
   <title>Chuong Nguyen — Product &amp; UX/UI Designer</title>
   <meta name="description" content="Chuong Nguyen — Product &amp; UX/UI Designer based in Da Nang, Vietnam. I turn complex products into interfaces people understand at a glance.">
 
+  <!-- Mark scripting as available before CSS loads so scroll-reveal can hide
+       its start-state without ever hiding content from no-JS visitors. -->
+  <script>document.documentElement.classList.add('js');</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -19,41 +23,42 @@
   <link rel="stylesheet" href="css/components/hero.css">
   <link rel="stylesheet" href="css/components/tags.css">
   <link rel="stylesheet" href="css/components/footer-credit.css">
+  <link rel="stylesheet" href="css/components/about.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <div class="hero-viewport">
-    <div class="grid-lines" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+  <main id="main-content">
+    <div class="hero-viewport">
+      <div class="grid-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-    <header class="site-header">
-      <a href="#home" class="logo" aria-label="Chuong Nguyen, UX UI Designer — back to top">
-        <span class="logo__mark">
-          <img src="assets/icons/logo-mark-c.svg" alt="" class="logo__mark-c">
-          <img src="assets/icons/logo-mark-superscript.svg" alt="" class="logo__mark-superscript">
-          <img src="assets/icons/logo-mark-star.svg" alt="" class="logo__mark-star">
-        </span>
-        <span class="logo__wordmark">
-          <img src="assets/icons/logo-wordmark-name.svg" alt="" class="logo__wordmark-name">
-          <img src="assets/icons/logo-wordmark-subtitle.svg" alt="" class="logo__wordmark-subtitle">
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="#home">Home</a>
-        <a href="#about">About me</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a href="#" class="btn btn--cv">Download CV</a>
-    </header>
+      <header class="site-header">
+        <a href="#home" class="logo" aria-label="Chuong Nguyen, UX UI Designer — back to top">
+          <span class="logo__mark">
+            <img src="assets/icons/logo-mark-c.svg" alt="" class="logo__mark-c">
+            <img src="assets/icons/logo-mark-superscript.svg" alt="" class="logo__mark-superscript">
+            <img src="assets/icons/logo-mark-star.svg" alt="" class="logo__mark-star">
+          </span>
+          <span class="logo__wordmark">
+            <img src="assets/icons/logo-wordmark-name.svg" alt="" class="logo__wordmark-name">
+            <img src="assets/icons/logo-wordmark-subtitle.svg" alt="" class="logo__wordmark-subtitle">
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#home">Home</a>
+          <a href="#about">About me</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a href="#" class="btn btn--cv">Download CV</a>
+      </header>
 
-    <main id="main-content">
       <section class="hero" id="home" aria-labelledby="hero-heading">
         <div class="hero__intro">
           <p class="hero__eyebrow">Product &amp; UX/UI Designer — Da Nang, Vietnam</p>
@@ -109,13 +114,58 @@
           </div>
         </div>
       </section>
+    </div>
 
-      <!-- About me, Skills, Experience, Projects, Company logos, and Contact sections are added in later build steps once each frame is fetched from Figma. -->
-    </main>
-  </div>
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="about__intro">
+        <div class="about__intro-photo" aria-hidden="true">
+          <img src="assets/images/profile-photo.png" alt="">
+        </div>
+        <img class="about__clover" src="assets/icons/deco-clover.svg" alt="" aria-hidden="true">
+
+        <p class="about__eyebrow" data-reveal>
+          <img class="about__star" src="assets/icons/tag-separator-star.svg" alt="">
+          <span>About Me</span>
+        </p>
+
+        <h2 class="about__heading" id="about-heading" data-reveal>
+          Simple on the surface.<br>
+          Carefully structured<br>
+          behind the scenes.
+        </h2>
+
+        <div class="about__roles" data-reveal role="list" aria-label="Areas of expertise">
+          <ul class="about__roles-track">
+            <li class="about__role">Interaction Design Specialist</li>
+            <li class="about__role">User Research Analyst</li>
+            <li class="about__role">User-Centered Design</li>
+            <li class="about__role">Component Library</li>
+            <li class="about__role">Style Guide</li>
+            <li class="about__role">Design Tokens</li>
+            <li class="about__role">Accessibility Standards</li>
+            <li class="about__role">Responsive Design Principles</li>
+            <li class="about__role">Design System</li>
+            <!-- Duplicate set (hidden from AT) so the horizontal loop is seamless. -->
+            <li class="about__role" aria-hidden="true">Interaction Design Specialist</li>
+            <li class="about__role" aria-hidden="true">User Research Analyst</li>
+            <li class="about__role" aria-hidden="true">User-Centered Design</li>
+            <li class="about__role" aria-hidden="true">Component Library</li>
+            <li class="about__role" aria-hidden="true">Style Guide</li>
+            <li class="about__role" aria-hidden="true">Design Tokens</li>
+            <li class="about__role" aria-hidden="true">Accessibility Standards</li>
+            <li class="about__role" aria-hidden="true">Responsive Design Principles</li>
+            <li class="about__role" aria-hidden="true">Design System</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills, Experience, Projects, Company logos, and Contact sections are added in later build steps once each frame is fetched from Figma. -->
+  </main>
 
   <!-- Global site footer is added in a later build step once that frame is fetched from Figma. -->
 
   <script src="js/header-scroll.js" defer></script>
+  <script src="js/reveal.js" defer></script>
 </body>
 </html>
