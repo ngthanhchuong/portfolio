@@ -8,10 +8,40 @@
   /* overflow-clip contains the off-canvas clover and the marquee tails without
      creating a scroll container (which would break the sticky header). */
   overflow: clip;
+  /* Own stacking context so the column grid can sit at z-index -1 — above the
+     section background but behind every piece of content. */
+  isolation: isolate;
   padding: 0 50px;
   background: var(--color-surface-mid);
   color: var(--color-paper-50);
 }
+
+/* Decorative column grid — continues the hero's vertical hairlines through the
+   About section: left edge, photo edge (357px from each side), right edge.
+   Spans the full section height, sitting behind all content. */
+.about__grid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50px;
+  right: 50px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.about__grid span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-paper-50);
+  opacity: 0.16;
+}
+
+.about__grid span:nth-child(1) { left: 0; }
+.about__grid span:nth-child(2) { left: 357px; }
+.about__grid span:nth-child(3) { right: 357px; }
+.about__grid span:nth-child(4) { right: 0; }
 
 /* --- Intro screen -------------------------------------------------------- */
 .about__intro {
