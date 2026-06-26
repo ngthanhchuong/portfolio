@@ -82,7 +82,9 @@
   overflow: hidden;
   border-radius: 4px;
   pointer-events: none;
-  z-index: 0;
+  /* Below the column grid (z-index -1) so the grid hairlines read on top of the
+     faint portrait — matches the Figma layer order: picture → grid → content. */
+  z-index: -2;
 }
 
 .about__intro-photo img {
@@ -102,7 +104,7 @@
   transform: translateY(-50%);
   opacity: 0.1;
   pointer-events: none;
-  z-index: 0;
+  z-index: -2; /* below the column grid, like the portrait */
 }
 
 .about__eyebrow {
