@@ -193,7 +193,9 @@
 .about__bio-photo {
   flex-shrink: 0;
   width: 357px;
-  aspect-ratio: 357 / 422;
+  max-width: 357px;
+  height: 422px;
+  max-height: 422px;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -241,6 +243,7 @@
   .about__bio-photo {
     width: 100%;
     max-width: 360px;
+    height: auto; /* release the fixed 422px so the 16/11 crop applies */
     aspect-ratio: 16 / 11;
   }
 
