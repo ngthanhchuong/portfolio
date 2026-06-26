@@ -21,7 +21,10 @@
   justify-content: center;
   gap: var(--space-xs);
   min-height: 100vh;
-  padding: var(--space-6xl) 0;
+  /* 50px inline padding insets the text 50px from the background photo's left
+     edge (per Figma: photo at the content edge, text 50px further in). The
+     absolutely-positioned photo references the padding box, so it stays put. */
+  padding: var(--space-6xl) 50px;
   border-bottom: 1px solid rgba(254, 254, 254, 0.2);
 }
 
