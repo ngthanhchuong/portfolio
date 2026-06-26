@@ -185,15 +185,15 @@
 .about__bio {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-5xl);
-  padding: var(--space-5xl) 0 var(--space-7xl);
+  gap: 50px; /* photo↔text, per Figma Container 302:6702 */
+  padding: 50px 0 0; /* 50px above the row; bottom edge meets the divider */
   border-bottom: 1px solid rgba(254, 254, 254, 0.2);
 }
 
 .about__bio-photo {
   flex-shrink: 0;
-  width: 265px;
-  aspect-ratio: 265 / 422;
+  width: 357px;
+  aspect-ratio: 357 / 422;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -202,7 +202,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  /* Source is taller than the 357×422 box; top-align so the head stays in
+     frame and the crop falls at the bottom (matches Figma node 302:6703). */
+  object-position: center top;
 }
 
 .about__bio-text {
