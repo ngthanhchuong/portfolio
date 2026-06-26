@@ -33,19 +33,18 @@
   z-index: 1;
 }
 
-/* Faint portrait — the fixed 983×1000 box from Figma (node 302:6699), pinned to
-   the top and horizontally centred on the frame centre offset 178.5px to the
-   left, which lands its left edge on the content start at the 1440 design width.
-   overflow:clip on .about contains the right/bottom bleed on smaller viewports. */
+/* Faint portrait — left-aligned to the content start, 1000px tall to fill the
+   intro. Uses the source's 4:5 ratio (like the hero photo) so the full portrait
+   shows without cropping; at 1000px tall that resolves to 800px wide, within the
+   983×1000 max box. overflow:clip on .about contains any bleed on small screens. */
 .about__intro-photo {
   position: absolute;
   top: 0;
-  left: calc(50% - 178.5px);
-  width: 983px;
-  max-width: 983px;
+  left: 0;
   height: 1000px;
   max-height: 1000px;
-  transform: translateX(-50%);
+  max-width: 983px;
+  aspect-ratio: 4 / 5;
   opacity: 0.1;
   overflow: hidden;
   border-radius: 4px;
@@ -57,7 +56,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center;
 }
 
 /* Decorative four-petal mark peeking in from the lower-right. */
