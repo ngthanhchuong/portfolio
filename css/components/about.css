@@ -39,7 +39,7 @@
 }
 
 .about__grid span:nth-child(1) { left: 0; }
-.about__grid span:nth-child(2) { left: 357px; }
+.about__grid span:nth-child(2) { left: 50%; }
 .about__grid span:nth-child(3) { right: 357px; }
 .about__grid span:nth-child(4) { right: 0; }
 
@@ -51,6 +51,10 @@
   justify-content: center;
   gap: var(--space-xs);
   min-height: 100vh;
+  /* Clip the faint portrait to the section so it ends at the bottom divider;
+     overflow-x stays visible so the full-width ::after hairline isn't clipped. */
+  overflow-x: visible;
+  overflow-y: clip;
   /* 50px inline padding insets the text 50px from the background photo's left
      edge (per Figma: photo at the content edge, text 50px further in). The
      absolutely-positioned photo references the padding box, so it stays put. */
