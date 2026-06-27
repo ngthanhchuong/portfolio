@@ -183,11 +183,23 @@
 
 /* --- Bio row ------------------------------------------------------------- */
 .about__bio {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: 50px; /* photo↔text, per Figma Container 302:6702 */
-  padding: 50px 0 0; /* 50px above the row; bottom edge meets the divider */
-  border-bottom: 1px solid rgba(254, 254, 254, 0.2);
+  padding: 50px 0 0; /* 50px above the row */
+}
+
+/* Full-width hairline closing the bio — matches the intro divider. */
+.about__bio::after {
+  content: "";
+  position: absolute;
+  left: -50px;
+  right: -50px;
+  bottom: 0;
+  height: 1px;
+  background: rgba(254, 254, 254, 0.2);
+  pointer-events: none;
 }
 
 .about__bio-photo {
