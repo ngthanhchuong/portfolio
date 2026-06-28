@@ -181,7 +181,86 @@
   background: url("../../assets/icons/tag-separator-star.svg") no-repeat center / contain;
 }
 
+/* --- Bio row ------------------------------------------------------------- */
+.about__bio {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 50px; /* photo↔text, per Figma Container 302:6702 */
+  padding: 50px 0 0; /* 50px above the row */
+}
+
+/* Full-width hairline closing the bio — matches the intro divider. */
+.about__bio::after {
+  content: "";
+  position: absolute;
+  left: -50px;
+  right: -50px;
+  bottom: 0;
+  height: 1px;
+  background: rgba(254, 254, 254, 0.2);
+  pointer-events: none;
+}
+
+.about__bio-photo {
+  flex-shrink: 0;
+  width: 357px;
+  /* Match the hero photo: 4:5 ratio (357×446) shows the full portrait, no crop. */
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.about__bio-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about__bio-text {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.about__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 6.67vw, 96px);
+  line-height: 1.05;
+  color: var(--color-paper-50);
+}
+
+.about__bio-copy p {
+  margin: 0;
+  font: 400 clamp(16px, 1.67vw, 24px) / 2 var(--font-primary);
+  color: var(--color-paper-50);
+}
+
 /* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 900px) {
+  .about__bio {
+    flex-direction: column;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-6xl);
+  }
+
+  .about__bio-photo {
+    width: 100%;
+    max-width: 360px;
+    height: auto; /* release the fixed 422px so the 16/11 crop applies */
+    aspect-ratio: 16 / 11;
+  }
+
+  .about__bio-photo img {
+    object-position: center 22%;
+  }
+}
+
 @media (max-width: 600px) {
   .about {
     padding: 0 var(--space-lg);
