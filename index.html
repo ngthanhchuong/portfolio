@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="css/components/tags.css">
   <link rel="stylesheet" href="css/components/footer-credit.css">
   <link rel="stylesheet" href="css/components/about.css">
+  <link rel="stylesheet" href="css/components/experience.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
@@ -178,12 +179,132 @@
       </div>
     </section>
 
-    <!-- Skills, Experience, Projects, Company logos, and Contact sections are added in later build steps once each frame is fetched from Figma. -->
+    <section class="experience" id="experience" aria-labelledby="experience-heading">
+      <div class="experience__pin">
+      <div class="experience__intro">
+        <p class="experience__eyebrow" data-reveal>
+          <img class="experience__star" src="assets/icons/tag-separator-star.svg" alt="">
+          <span>Experiences</span>
+        </p>
+        <h2 class="experience__heading" id="experience-heading" data-reveal>
+          Three chapters,<br>one direction.
+        </h2>
+        <p class="experience__hint" data-reveal>
+          Keep scrolling
+          <img class="experience__arrow" src="assets/icons/arrow-right.svg" alt="">
+        </p>
+      </div>
+
+      <div class="experience__track">
+        <div class="experience__scroller">
+          <ol class="experience__list">
+          <li class="exp-card">
+            <p class="exp-card__year">2022</p>
+            <div class="exp-card__body">
+              <div class="exp-card__header">
+                <span class="exp-card__index">01</span>
+                <img class="exp-card__logo" src="assets/images/logo-techsoft.jpg" alt="Techsoft logo">
+                <h3 class="exp-card__company">Techsoft</h3>
+                <span class="exp-card__mode">Onsite</span>
+              </div>
+              <div class="exp-card__role-row">
+                <span class="exp-card__role">
+                  <img class="exp-card__role-star" src="assets/icons/tag-separator-star.svg" alt="">
+                  UI UX Designer
+                </span>
+                <span class="exp-card__dates">Sep 2022 – Jun 2024</span>
+              </div>
+              <p class="exp-card__desc">Where I learned to move fast across very different products.</p>
+              <ul class="exp-card__tags">
+                <li>B2B · B2C · E-commerce</li>
+                <li>Mobile &amp; Web</li>
+                <li>Design Systems</li>
+                <li>User Research</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="exp-card">
+            <p class="exp-card__year">2024</p>
+            <div class="exp-card__body">
+              <div class="exp-card__header">
+                <span class="exp-card__index">02</span>
+                <img class="exp-card__logo" src="assets/images/logo-mm.png" alt="M&amp;M Solutions logo">
+                <h3 class="exp-card__company">M&amp;M Solutions</h3>
+                <span class="exp-card__mode">Onsite</span>
+              </div>
+              <div class="exp-card__role-row">
+                <span class="exp-card__role">
+                  <img class="exp-card__role-star" src="assets/icons/tag-separator-star.svg" alt="">
+                  UI UX Designer
+                </span>
+                <span class="exp-card__dates">Jun 2024 – Oct 2024</span>
+              </div>
+              <p class="exp-card__desc">Where I learned rigor — across a language and a market gap.</p>
+              <ul class="exp-card__tags">
+                <li>Japanese market</li>
+                <li>Bridge engineers</li>
+                <li>Wireframes &amp; flows</li>
+                <li>Tight timelines</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="exp-card">
+            <p class="exp-card__year">2026</p>
+            <div class="exp-card__body">
+              <div class="exp-card__header">
+                <span class="exp-card__index">03</span>
+                <img class="exp-card__logo" src="assets/images/logo-spartan.jpg" alt="Spartan logo">
+                <h3 class="exp-card__company">Spartan</h3>
+                <span class="exp-card__mode">Hybrid</span>
+              </div>
+              <div class="exp-card__role-row">
+                <span class="exp-card__role">
+                  <img class="exp-card__role-star" src="assets/icons/tag-separator-star.svg" alt="">
+                  UI UX Designer - Product Designer
+                </span>
+                <span class="exp-card__dates">Nov 2024 – May 2026</span>
+              </div>
+              <p class="exp-card__desc">Where I went deep — and grew into product.</p>
+              <ul class="exp-card__tags">
+                <li>AI products</li>
+                <li>End-to-end flows</li>
+                <li>AI Workflow</li>
+                <li>Design system</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="exp-card exp-card--final">
+            <div class="exp-card__final">
+              <h3 class="exp-card__outro">Everything<br>led here.</h3>
+              <a class="exp-card__cta" href="#projects">
+                <span class="exp-card__cta-text">See the work that came out of it</span>
+                <span class="exp-card__cta-scroll">
+                  <img src="assets/icons/scroll-button.svg" alt="">
+                  <span>Scroll down</span>
+                </span>
+              </a>
+            </div>
+          </li>
+          </ol>
+        </div>
+
+        <div class="experience__timeline" aria-hidden="true">
+          <span class="experience__progress"></span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Skills, Projects, Company logos, and Contact sections are added in later build steps once each frame is fetched from Figma. -->
   </main>
 
   <!-- Global site footer is added in a later build step once that frame is fetched from Figma. -->
 
   <script src="js/header-scroll.js" defer></script>
   <script src="js/reveal.js" defer></script>
+  <script src="js/experience-scroll.js" defer></script>
 </body>
 </html>

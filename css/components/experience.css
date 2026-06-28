@@ -1,0 +1,366 @@
+/* ===========================================================================
+   Experience — a scroll-driven, pinned timeline. The section is made tall in
+   JS; while it scrolls past, an inner pin sticks to the viewport and the row of
+   role cards slides left in lockstep with vertical scroll. A lime timeline lead
+   fills across, and each year lights up lime as its card reaches the active
+   line. When the last card clears, the pin releases and the page continues.
+   Below 900px (and without JS) it falls back to a plain horizontal-scroll row.
+   =========================================================================== */
+.experience {
+  position: relative;
+  background: var(--color-surface-mid);
+  color: var(--color-paper-50);
+  border-bottom: 1px solid rgba(254, 254, 254, 0.2);
+  /* height is set by JS = 100vh + horizontal travel distance */
+}
+
+/* --- Sticky pin: the visible viewport while the section scrolls past ------ */
+.experience__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
+  overflow: hidden;
+}
+
+/* --- Left intro (stays put while the cards slide) ------------------------- */
+.experience__intro {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 600px;
+  max-width: 46%;
+  padding-left: 50px;
+}
+
+.experience__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font: italic 400 20px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.experience__star {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.experience__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(34px, 4.44vw, 64px);
+  line-height: 1.15;
+  color: var(--color-paper-50);
+}
+
+.experience__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-2xs);
+  font: 400 16px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.experience__arrow {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* --- Sliding track (the right viewport that clips the card row) ----------- */
+.experience__track {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* The row that JS translates on the X axis as the page scrolls. */
+.experience__scroller {
+  width: max-content;
+  padding: 0 50px 0 var(--space-2xl);
+  will-change: transform;
+}
+
+.experience__list {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-6xl);
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Timeline hairline pinned in the viewport; its lime lead grows with scroll.
+   The vertical position is set in JS to sit just under the year row. */
+.experience__timeline {
+  position: absolute;
+  left: var(--space-2xl);
+  right: 50px;
+  top: 50%;
+  height: 1px;
+  background: rgba(254, 254, 254, 0.2);
+}
+
+.experience__progress {
+  display: block;
+  height: 100%;
+  width: 6%;
+  background: var(--color-brand-primary);
+  transition: width 0.12s linear;
+}
+
+/* --- Cards --------------------------------------------------------------- */
+.exp-card {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+  /* Size to the widest row (the tag strip) so tags stay on one line, matching
+     the per-card widths in Figma. Capped so a long row can't run away. */
+  width: max-content;
+  max-width: 780px;
+  padding: 50px 0;
+}
+
+.exp-card__year {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.2);
+  transition: color var(--dur-fast) var(--ease-out-soft);
+}
+
+/* Lit by JS once the card reaches the active line — the lime brand token. */
+.exp-card__year.is-active {
+  color: var(--color-brand-primary);
+}
+
+.exp-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.exp-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.exp-card__index {
+  font: 500 24px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.exp-card__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.exp-card__company {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font: 600 32px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.exp-card__mode {
+  font: 500 16px var(--font-primary);
+  color: var(--color-paper-600);
+  white-space: nowrap;
+}
+
+.exp-card__role-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.exp-card__role {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font: 500 24px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.exp-card__role-star {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.exp-card__dates {
+  font: 500 16px var(--font-primary);
+  color: var(--color-paper-600);
+  white-space: nowrap;
+}
+
+.exp-card__desc {
+  margin: 0;
+  font: 500 24px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.exp-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: 0;
+  list-style: none;
+}
+
+.exp-card__tags li {
+  padding: var(--space-xs) var(--space-lg);
+  border: 1px solid var(--color-paper-700);
+  border-radius: 4px;
+  font: 500 16px var(--font-primary);
+  color: var(--color-paper-500);
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+/* --- Final CTA card ------------------------------------------------------ */
+.exp-card--final {
+  justify-content: center;
+  gap: 0;
+  width: max-content;
+  max-width: 600px;
+}
+
+.exp-card__final {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.exp-card__outro {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 1.05;
+  color: var(--color-paper-50);
+}
+
+.exp-card__cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+}
+
+.exp-card__cta-text {
+  font: 400 20px var(--font-primary);
+  color: var(--color-brand-primary);
+}
+
+.exp-card__cta-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
+}
+
+.exp-card__cta-scroll img {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  transition: transform var(--dur-fast) var(--ease-out-soft);
+}
+
+.exp-card__cta:hover .exp-card__cta-scroll img,
+.exp-card__cta:focus-visible .exp-card__cta-scroll img {
+  transform: translateX(4px);
+}
+
+.exp-card__cta-scroll span {
+  font: 400 14px var(--font-primary);
+  color: var(--color-paper-50);
+  white-space: nowrap;
+}
+
+/* --- Fallbacks: no JS, or narrow viewport -------------------------------- *
+   Without JS the section can't be pinned/driven, and on small screens a pinned
+   horizontal scroll-jack is awkward — in both cases drop back to a plain,
+   natively scrollable horizontal row so every card stays reachable. */
+html:not(.js) .experience { height: auto !important; }
+html:not(.js) .experience__pin {
+  position: static;
+  height: auto;
+  padding: var(--space-6xl) 0;
+}
+html:not(.js) .experience__track { overflow-x: auto; }
+html:not(.js) .experience__scroller { transform: none !important; }
+html:not(.js) .experience__timeline { display: none; }
+
+@media (max-width: 900px) {
+  .experience { height: auto !important; }
+
+  .experience__pin {
+    position: static;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2xl);
+    padding: var(--space-5xl) 0;
+    overflow: visible;
+  }
+
+  .experience__intro {
+    width: auto;
+    max-width: none;
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+
+  .experience__track {
+    height: auto;
+    display: block;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(254, 254, 254, 0.3) transparent;
+  }
+
+  .experience__scroller {
+    transform: none !important;
+    padding: 0 var(--space-lg);
+  }
+
+  .experience__list {
+    gap: var(--space-2xl);
+  }
+
+  .experience__timeline {
+    display: none;
+  }
+
+  .exp-card {
+    width: 86vw;
+    max-width: 560px;
+  }
+
+  .exp-card__year,
+  .exp-card__outro {
+    font-size: clamp(56px, 18vw, 96px);
+  }
+}
