@@ -1,0 +1,272 @@
+/* ===========================================================================
+   About Me — Intro: a full-screen heading with a faint portrait behind it and
+   a running role marquee. Sits on the mid-graphite section background, directly
+   below the blue hero. (The bio row is added in a follow-up.)
+   =========================================================================== */
+.about {
+  position: relative;
+  /* overflow-clip contains the off-canvas clover and the marquee tails without
+     creating a scroll container (which would break the sticky header). */
+  overflow: clip;
+  /* Own stacking context so the column grid can sit at z-index -1 — above the
+     section background but behind every piece of content. */
+  isolation: isolate;
+  padding: 0 50px;
+  background: var(--color-surface-mid);
+  color: var(--color-paper-50);
+}
+
+/* Decorative column grid — continues the hero's vertical hairlines through the
+   About section: left edge, photo edge (357px from each side), right edge.
+   Spans the full section height, sitting behind all content. */
+.about__grid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50px;
+  right: 50px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.about__grid span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-paper-50);
+  opacity: 0.16;
+}
+
+.about__grid span:nth-child(1) { left: 0; }
+.about__grid span:nth-child(2) { left: 50%; }
+.about__grid span:nth-child(3) { right: 357px; }
+.about__grid span:nth-child(4) { right: 0; }
+
+/* --- Intro screen -------------------------------------------------------- */
+.about__intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 100vh;
+  /* Clip the faint portrait to the section so it ends at the bottom divider;
+     overflow-x stays visible so the full-width ::after hairline isn't clipped. */
+  overflow-x: visible;
+  overflow-y: clip;
+  /* 50px inline padding insets the text 50px from the background photo's left
+     edge (per Figma: photo at the content edge, text 50px further in). The
+     absolutely-positioned photo references the padding box, so it stays put. */
+  padding: var(--space-6xl) 50px;
+}
+
+/* Full-width hairline closing the section — the negative inline insets cancel
+   the .about 50px padding so it runs edge to edge (past the inset column grid). */
+.about__intro::after {
+  content: "";
+  position: absolute;
+  left: -50px;
+  right: -50px;
+  bottom: 0;
+  height: 1px;
+  background: rgba(254, 254, 254, 0.2);
+  pointer-events: none;
+}
+
+/* Lift the real content above the faint portrait + clover. */
+.about__eyebrow,
+.about__heading,
+.about__roles {
+  position: relative;
+  z-index: 1;
+}
+
+/* Faint portrait — left-aligned to the content start, 1000px tall to fill the
+   intro. Uses the source's 4:5 ratio (like the hero photo) so the full portrait
+   shows without cropping; at 1000px tall that resolves to 800px wide, within the
+   983×1000 max box. overflow:clip on .about contains any bleed on small screens. */
+.about__intro-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1000px;
+  max-height: 1000px;
+  max-width: 983px;
+  aspect-ratio: 4 / 5;
+  opacity: 0.1;
+  overflow: hidden;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__intro-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Decorative four-petal mark peeking in from the lower-right. */
+.about__clover {
+  position: absolute;
+  right: -250px;
+  top: 78%;
+  width: 600px;
+  height: 600px;
+  transform: translateY(-50%);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* icon→label gap, per Figma */
+  font: italic 400 20px var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+.about__star {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.about__heading {
+  margin: 0;
+  max-width: 1240px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  /* 90px at the 1440 design width, scaling down with the viewport. */
+  font-size: clamp(34px, 6.25vw, 90px);
+  /* Clash Display "normal" leading ≈ 1.2 — matches the 333px / 3-line block. */
+  line-height: 1.2;
+  color: var(--color-paper-50);
+}
+
+/* --- Role marquee (horizontal, looping) ---------------------------------- */
+.about__roles {
+  width: 100%;
+  overflow: hidden;
+  /* Soften the left/right edges so roles enter and leave the strip gently. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 92%, transparent 100%);
+}
+
+.about__roles-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  list-style: none;
+}
+
+.about__role {
+  display: flex;
+  align-items: center;
+  font: 700 20px/2 var(--font-primary);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-brand-primary);
+}
+
+.about__role::after {
+  content: "";
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0 6px; /* tight star spacing, per Figma Job Titles Container */
+  background: url("../../assets/icons/tag-separator-star.svg") no-repeat center / contain;
+}
+
+/* --- Bio row ------------------------------------------------------------- */
+.about__bio {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 50px; /* photo↔text, per Figma Container 302:6702 */
+  padding: 50px 0 0; /* 50px above the row */
+}
+
+/* Full-width hairline closing the bio — matches the intro divider. */
+.about__bio::after {
+  content: "";
+  position: absolute;
+  left: -50px;
+  right: -50px;
+  bottom: 0;
+  height: 1px;
+  background: rgba(254, 254, 254, 0.2);
+  pointer-events: none;
+}
+
+.about__bio-photo {
+  flex-shrink: 0;
+  width: 357px;
+  /* Match the hero photo: 4:5 ratio (357×446) shows the full portrait, no crop. */
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.about__bio-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about__bio-text {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.about__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 6.67vw, 96px);
+  line-height: 1.05;
+  color: var(--color-paper-50);
+}
+
+.about__bio-copy p {
+  margin: 0;
+  font: 400 clamp(16px, 1.67vw, 24px) / 2 var(--font-primary);
+  color: var(--color-paper-50);
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 900px) {
+  .about__bio {
+    flex-direction: column;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-6xl);
+  }
+
+  .about__bio-photo {
+    width: 100%;
+    max-width: 360px;
+    height: auto; /* release the fixed 422px so the 16/11 crop applies */
+    aspect-ratio: 16 / 11;
+  }
+
+  .about__bio-photo img {
+    object-position: center 22%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 0 var(--space-lg);
+  }
+
+  .about__intro {
+    padding: var(--space-5xl) 0;
+  }
+}

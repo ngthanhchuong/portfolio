@@ -36,6 +36,12 @@
   to   { transform: translateY(-50%); }
 }
 
+/* Moves the role strip left by exactly one of its two copies. */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* --- Entrance: staggered fade (header + hero elements) -------------------- */
 .site-header {
   animation: hero-fade-down var(--dur-entrance) var(--ease-out-soft) both;
@@ -93,6 +99,26 @@
   animation: marquee-up 16s linear infinite;
 }
 
+/* --- Loop: horizontal role marquee (About Me) ---------------------------- */
+.about__roles-track {
+  animation: marquee-left 32s linear infinite;
+}
+
+/* --- Scroll reveal: fade-and-rise once an element enters the viewport.
+   Guarded by `.js` so the content is never hidden when scripting is off;
+   reveal.js adds `.is-revealed` via IntersectionObserver. --------------- */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--dur-entrance) var(--ease-out-soft),
+              transform var(--dur-entrance) var(--ease-out-soft);
+}
+
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
 /* --- Micro-interaction: nav link underline on hover/focus ---------------- */
 .site-nav a {
   position: relative;
@@ -146,7 +172,8 @@
   .hero__photo,
   .hero__name-line-inner,
   .badge__dot,
-  .footer-credit__scroll-icon {
+  .footer-credit__scroll-icon,
+  .about__roles-track {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -154,5 +181,12 @@
 
   .hero__photo:hover img {
     transform: none !important;
+  }
+
+  /* Show revealed content immediately — no fade, no offset. */
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
