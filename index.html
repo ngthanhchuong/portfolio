@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="css/components/footer-credit.css">
   <link rel="stylesheet" href="css/components/about.css">
   <link rel="stylesheet" href="css/components/experience.css">
+  <link rel="stylesheet" href="css/components/workflow-ai.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
@@ -298,7 +299,77 @@
       </div>
     </section>
 
-    <!-- Skills, Projects, Company logos, and Contact sections are added in later build steps once each frame is fetched from Figma. -->
+    <section class="workflow" id="workflow" aria-labelledby="workflow-heading">
+      <div class="workflow__header">
+        <p class="workflow__eyebrow" data-reveal>
+          <img class="workflow__star" src="assets/icons/tag-separator-star.svg" alt="">
+          <span>Workflow with AI</span>
+        </p>
+        <h2 class="workflow__heading" id="workflow-heading" data-reveal>
+          It suggests.<br>
+          <span class="workflow__heading-accent">I decide.</span>
+        </h2>
+        <p class="workflow__intro" data-reveal>
+          I work with AI the way I design AI — fast on volume, human on judgment. Four stages, one rule: AI drafts, I make the call.
+        </p>
+      </div>
+
+      <div class="workflow__grid">
+        <article class="workflow__card" data-reveal>
+          <div class="workflow__card-visual">
+            <img class="workflow__card-art" src="assets/icons/iso-research.svg" alt="" aria-hidden="true">
+          </div>
+          <p class="workflow__card-index">01 - Research</p>
+          <h3 class="workflow__card-title">Research</h3>
+          <p class="workflow__card-desc">AI transcribes sessions and clusters the raw notes into themes.</p>
+          <p class="workflow__card-note">
+            <img class="workflow__card-note-star" src="assets/icons/tag-separator-star.svg" alt="">
+            <span><span class="workflow__note-accent">I decide</span> what&rsquo;s real signal — and what it means for the product.</span>
+          </p>
+        </article>
+
+        <article class="workflow__card" data-reveal>
+          <div class="workflow__card-visual">
+            <img class="workflow__card-art" src="assets/icons/iso-explore.svg" alt="" aria-hidden="true">
+          </div>
+          <p class="workflow__card-index">02 - Explore</p>
+          <h3 class="workflow__card-title">Explore</h3>
+          <p class="workflow__card-desc">AI generates layout variations, alternative flows, and copy options.</p>
+          <p class="workflow__card-note">
+            <img class="workflow__card-note-star" src="assets/icons/tag-separator-star.svg" alt="">
+            <span><span class="workflow__note-accent">I decide</span> the direction that fits the user and the brief.</span>
+          </p>
+        </article>
+
+        <article class="workflow__card" data-reveal>
+          <div class="workflow__card-visual">
+            <img class="workflow__card-art" src="assets/icons/iso-craft.svg" alt="" aria-hidden="true">
+          </div>
+          <p class="workflow__card-index">03 - Craft</p>
+          <h3 class="workflow__card-title">Craft</h3>
+          <p class="workflow__card-desc">AI drafts microcopy, fills realistic content, and speeds repetitive states.</p>
+          <p class="workflow__card-note">
+            <img class="workflow__card-note-star" src="assets/icons/tag-separator-star.svg" alt="">
+            <span><span class="workflow__note-accent">I own</span> the craft, spacing, consistency, and voice.</span>
+          </p>
+        </article>
+
+        <article class="workflow__card" data-reveal>
+          <div class="workflow__card-visual">
+            <img class="workflow__card-art" src="assets/icons/iso-ship.svg" alt="" aria-hidden="true">
+          </div>
+          <p class="workflow__card-index">04 - Ship</p>
+          <h3 class="workflow__card-title">Ship</h3>
+          <p class="workflow__card-desc">AI drafts component docs, edge-case lists, and acceptance notes.</p>
+          <p class="workflow__card-note">
+            <img class="workflow__card-note-star" src="assets/icons/tag-separator-star.svg" alt="">
+            <span><span class="workflow__note-accent">I verify</span> them against the real flow — and add what AI missed.</span>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects, Company logos, and Contact sections are added in later build steps once each frame is fetched from Figma. -->
   </main>
 
   <!-- Global site footer is added in a later build step once that frame is fetched from Figma. -->
