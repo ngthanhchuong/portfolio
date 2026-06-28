@@ -81,45 +81,45 @@
   border-color: var(--color-brand-primary);
 }
 
-.workflow__card:hover .workflow__card-art {
-  transform: translateY(-8px) scale(1.05);
+/* Only the lime accent of each isometric lifts on hover; the grey base holds.
+   The transform is applied to the lime paths themselves (transforming the <g>
+   is unreliable for SVG); fill-box keeps the translate consistent across the
+   differently-scaled illustrations. */
+.iso-accent path {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.35s var(--ease-out-soft);
 }
 
-.workflow__card:hover .workflow__card-art--hover {
-  opacity: 1;
+.workflow__card:hover .iso-accent path {
+  transform: translateY(-9px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .workflow__card:hover .workflow__card-art {
+  .workflow__card:hover .iso-accent path {
     transform: none;
   }
 }
 
 .workflow__card-visual {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 200px;
   background: var(--color-surface-card);
   border-radius: var(--radius-md);
   overflow: hidden;
 }
 
-/* Size by width so each isometric keeps its own viewBox ratio (the Craft plane
-   is flat, Ship is near-square) instead of being forced to one height. Default
-   and hover poses share the one grid cell so they can crossfade in place. */
+/* Inline SVG so the lime accent can animate independently of the grey base.
+   Sized by width so each isometric keeps its own viewBox ratio (the Craft plane
+   is flat, Ship is near-square) rather than being forced to one height. */
 .workflow__card-art {
-  grid-area: 1 / 1;
   width: 150px;
   max-width: 100%;
   height: auto;
   max-height: 150px;
-  transition: opacity 0.25s var(--ease-out-soft),
-              transform 0.35s var(--ease-out-soft);
-}
-
-/* The hover-pose illustration sits on top of the default and fades in. */
-.workflow__card-art--hover {
-  opacity: 0;
+  overflow: visible;
 }
 
 .workflow__card-index {
