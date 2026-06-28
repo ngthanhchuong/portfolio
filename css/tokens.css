@@ -8,6 +8,8 @@
   --color-gray-200: #D9D9D9;
   /* Mid graphite — the "About Me" section background (confirmed live from Figma) */
   --color-surface-mid: #545455;
+  /* Warm near-black — the card illustration wells in "Workflow with AI" */
+  --color-surface-card: #302F2A;
   --color-lime: #BCFF2F;
   --color-orange: #FF751A;
   --color-blue: #1A5FFF;
