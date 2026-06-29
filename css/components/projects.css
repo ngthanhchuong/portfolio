@@ -63,10 +63,10 @@
   display: block;
   margin: var(--space-sm) 0 0;
   padding: 0;
-  /* Just a short beat to register the completed band once the last card pins —
-     kept small so the assembled tabs don't linger on screen too long before the
-     section moves on. */
-  padding-bottom: 40vh;
+  /* No extra trailing room — the section's own 100px bottom padding closes it
+     off (matching Figma). The band forms as the last card lands, then the
+     section moves straight on. */
+  padding-bottom: 0;
   list-style: none;
 }
 
@@ -76,10 +76,11 @@
      padding above it instead of jamming against the viewport edge. */
   --pin-offset: 50px;
   top: var(--pin-offset);
-  /* 200vh of scroll per card: the body fills the first viewport (so each
-     project sits alone, full-screen, for ~one screen of scrolling) and the
-     second viewport is the runway over which the next card rises to cover it. */
-  min-height: 200vh;
+  /* 130vh of scroll per card: the body fills the first viewport (each project
+     stands alone, full-screen) and the extra ~30vh is the runway over which the
+     next card rises. Kept short so the last card leaves only a small tail — the
+     leftover runway with no card to fill it equals this solo distance. */
+  min-height: 130vh;
   display: flex;
   flex-direction: column;
   /* Accent colour shared by the tab + body; overridden per project below. */
