@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="css/components/about.css">
   <link rel="stylesheet" href="css/components/experience.css">
   <link rel="stylesheet" href="css/components/workflow-ai.css">
+  <link rel="stylesheet" href="css/components/projects.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
@@ -411,7 +412,107 @@
       </div>
     </section>
 
-    <!-- Projects, Company logos, and Contact sections are added in later build steps once each frame is fetched from Figma. -->
+    <section class="projects" id="projects" aria-labelledby="projects-heading">
+      <div class="projects__header">
+        <p class="projects__eyebrow" data-reveal>
+          <img class="projects__star" src="assets/icons/tag-separator-star.svg" alt="">
+          <span>Projects</span>
+        </p>
+        <h2 class="projects__heading" id="projects-heading" data-reveal>
+          Projects, from first flow to final pixel.
+        </h2>
+        <p class="projects__intro" data-reveal>
+          The work behind the thesis — each one simple on the surface, carefully structured underneath.
+        </p>
+      </div>
+
+      <ol class="projects__list">
+        <li class="project project--periwinkle project--tab-left">
+          <div class="project__tab">
+            <img class="project__tab-icon" src="assets/icons/icon-medal.svg" alt="">
+            <span class="project__tab-label">Project 01</span>
+          </div>
+          <div class="project__body">
+            <div class="project__main">
+              <div class="project__text">
+                <h3 class="project__title">AI-powered Nutrition app tracker</h3>
+                <p class="project__desc">Team &amp; I designed an AI-powered calorie tracking app that allows users to scan their food, estimate calories, and monitor their nutrition progress more easily.</p>
+                <a class="project__link" href="#">
+                  <span>View Detail</span>
+                  <img class="project__link-icon" src="assets/icons/icon-send.svg" alt="">
+                </a>
+              </div>
+              <ul class="project__tags">
+                <li>DietFit</li>
+                <li>AI Tracker</li>
+                <li>Nutrition</li>
+                <li>Healthy</li>
+                <li>Food</li>
+              </ul>
+            </div>
+            <div class="project__media">
+              <img src="assets/images/project-dietfit.jpg" alt="DietFit app shown on three phones amid fresh greens, fruit, nuts, and a bowl of granola">
+            </div>
+          </div>
+        </li>
+
+        <li class="project project--lime project--tab-center">
+          <div class="project__tab">
+            <img class="project__tab-icon" src="assets/icons/icon-medal.svg" alt="">
+            <span class="project__tab-label">Project 02</span>
+          </div>
+          <div class="project__body">
+            <div class="project__main">
+              <div class="project__text">
+                <h3 class="project__title">Spartan X Management Web App</h3>
+                <p class="project__desc">One source of truth for managers: people, projects, and workload together.</p>
+                <a class="project__link" href="#">
+                  <span>View Detail</span>
+                  <img class="project__link-icon" src="assets/icons/icon-send.svg" alt="">
+                </a>
+              </div>
+              <ul class="project__tags">
+                <li>Management Web</li>
+                <li>CMS</li>
+                <li>Dashboard</li>
+              </ul>
+            </div>
+            <div class="project__media">
+              <img src="assets/images/project-spartan.jpg" alt="Spartan X management web app sign-in and dashboard on a desktop monitor against a deep blue backdrop">
+            </div>
+          </div>
+        </li>
+
+        <li class="project project--orange project--tab-right">
+          <div class="project__tab">
+            <img class="project__tab-icon" src="assets/icons/icon-medal.svg" alt="">
+            <span class="project__tab-label">Project 03</span>
+          </div>
+          <div class="project__body">
+            <div class="project__main">
+              <div class="project__text">
+                <h3 class="project__title">Raven — HR &amp; Contractor Mobile App</h3>
+                <p class="project__desc">People, work, schedules, and contracts — in one mobile place.</p>
+                <a class="project__link" href="#">
+                  <span>View Detail</span>
+                  <img class="project__link-icon" src="assets/icons/icon-send.svg" alt="">
+                </a>
+              </div>
+              <ul class="project__tags">
+                <li>Mobile App</li>
+                <li>People</li>
+                <li>Contract</li>
+              </ul>
+            </div>
+            <div class="project__media">
+              <img src="assets/images/project-raven.jpg" alt="Raven HR and contractor app shown on three phones over a blue gradient with the Raven wordmark">
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Company logos and Contact sections are added in later build steps once each frame is fetched from Figma. -->
   </main>
 
   <!-- Global site footer is added in a later build step once that frame is fetched from Figma. -->
