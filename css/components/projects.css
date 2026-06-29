@@ -63,18 +63,24 @@
   display: block;
   margin: var(--space-sm) 0 0;
   padding: 0;
-  /* Trailing room inside the cards' containing block so the LAST card can pin
-     and hold the completed band for a beat, instead of unpinning the instant it
-     arrives (it's the final child, so without this its sticky range is zero). */
-  padding-bottom: 100vh;
+  /* No extra trailing room — the section's own 100px bottom padding closes it
+     off (matching Figma). The band forms as the last card lands, then the
+     section moves straight on. */
+  padding-bottom: 0;
   list-style: none;
 }
 
 .project {
   position: sticky;
-  top: 0;
-  /* Each card owns a viewport of scroll, so the next one rises to cover it. */
-  min-height: 100vh;
+  /* Pin a little below the top so the card keeps a breath of the section's
+     padding above it instead of jamming against the viewport edge. */
+  --pin-offset: 50px;
+  top: var(--pin-offset);
+  /* 130vh of scroll per card: the body fills the first viewport (each project
+     stands alone, full-screen) and the extra ~30vh is the runway over which the
+     next card rises. Kept short so the last card leaves only a small tail — the
+     leftover runway with no card to fill it equals this solo distance. */
+  min-height: 130vh;
   display: flex;
   flex-direction: column;
   /* Accent colour shared by the tab + body; overridden per project below. */
@@ -132,11 +138,15 @@
 /* --- Body ---------------------------------------------------------------- */
 .project__body {
   display: flex;
-  flex: 1;
+  /* Don't grow into the card's 200vh — the body is the visible panel and must
+     stay exactly one viewport tall; the extra scroll runway sits empty below. */
+  flex: none;
   gap: 50px;
   padding: 50px;
-  min-height: 720px;
-  /* Centre the 620px content block within the viewport-tall card. */
+  /* One viewport tall minus the tab (56px) and the pin offset, so the panel
+     sits fully on screen with the breathing room above it. */
+  min-height: max(720px, calc(100vh - 56px - var(--pin-offset)));
+  /* Centre the 620px content block within the viewport-tall panel. */
   align-items: center;
   background: var(--project-accent);
   overflow: clip;
@@ -299,5 +309,10 @@
   .project {
     position: static;
     min-height: 0;
+  }
+
+  .project__body {
+    /* No viewport-tall runway when the cards aren't pinning. */
+    min-height: 720px;
   }
 }
