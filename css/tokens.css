@@ -16,6 +16,7 @@
   --color-green: #13B879;
 
   /* Primitives — blue/paper scale (confirmed live from Figma Hero fetch, not yet in DESIGN.md) */
+  --color-blue-900: #222E57;
   --color-blue-500: #4B73F9;
   --color-blue-50: #F1F4FF;
   --color-paper-50: #FEFEFE;

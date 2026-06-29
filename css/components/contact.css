@@ -1,0 +1,119 @@
+/* ===========================================================================
+   Contact — a deep-blue closing section with an "available" badge, a two-line
+   call-to-action heading (white + lime), a Gmail line, and two outbound links
+   (LinkedIn / CV) that each pair a label with an up-and-out send arrow. A large
+   lime double-sparkle bleeds off the right edge as decoration.
+   =========================================================================== */
+.contact {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  /* Figma: section padding is 100px vertical, 50px horizontal (py-100 / px-50). */
+  padding: 100px 50px;
+  background: var(--color-blue-900);
+  border-bottom: 1px solid rgba(254, 254, 254, 0.2);
+  overflow: clip;
+}
+
+/* Decorative sparkle bleeding off the right edge, vertically centred. */
+.contact__spark {
+  position: absolute;
+  top: 50%;
+  right: -115px;
+  width: 438px;
+  height: 438px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.contact__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 36px;
+  width: 100%;
+}
+
+/* Reuse the hero badge; just guarantee it never stretches in the column. */
+.contact__badge {
+  align-self: flex-start;
+}
+
+.contact__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(34px, 4.44vw, 64px);
+  line-height: 1.1;
+  color: var(--color-text-inverse);
+}
+
+.contact__heading-line--accent {
+  color: var(--color-text-brand);
+}
+
+.contact__email {
+  margin: 0;
+  font: 300 24px var(--font-primary);
+  color: var(--color-text-inverse);
+}
+
+.contact__email a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease-out-soft);
+}
+
+.contact__email a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* --- Links --------------------------------------------------------------- */
+.contact__links {
+  display: flex;
+  gap: 36px;
+}
+
+.contact__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs);
+  font: 500 14px var(--font-primary);
+  text-transform: capitalize;
+  text-decoration: none;
+  color: var(--color-text-inverse);
+  transition: gap var(--dur-fast) var(--ease-out-soft);
+}
+
+.contact__link:hover {
+  gap: var(--space-sm);
+}
+
+.contact__link-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  /* The Figma "send" glyph is flipped to point up-and-out (↗). */
+  transform: scaleX(-1);
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 900px) {
+  .contact {
+    padding: var(--space-5xl) var(--space-lg);
+  }
+
+  .contact__spark {
+    width: 260px;
+    height: 260px;
+    right: -90px;
+    opacity: 0.5;
+  }
+}
