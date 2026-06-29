@@ -1,0 +1,71 @@
+/* ===========================================================================
+   Site Footer — a graphite band closing the page. A two-line credit on the
+   left (name + location, then build attribution), and a "Back to top" control
+   on the right pairing a circular up-arrow button with its label.
+   Figma: section padding 100px vertical, 50px horizontal (py-100 / px-50).
+   =========================================================================== */
+.site-footer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: 100px 50px;
+  background: var(--color-surface-mid);
+}
+
+/* --- Credit (left) ------------------------------------------------------- */
+.site-footer__credit {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.site-footer__line {
+  display: flex;
+  gap: var(--space-sm);
+  margin: 0;
+  font: 500 16px var(--font-primary);
+  color: var(--color-text-inverse);
+  white-space: nowrap;
+}
+
+.site-footer__line--sub {
+  font-weight: 300;
+}
+
+.site-footer__sep {
+  opacity: 0.6;
+}
+
+/* --- Back to top (right) ------------------------------------------------- */
+.site-footer__top {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.site-footer__top:hover,
+.site-footer__top:focus-visible {
+  opacity: 0.8;
+}
+
+.site-footer__top-icon {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  /* The shared scroll button points down; flip it to point up (matches the
+     Figma -scale-y-100 applied to the "back to top" instance). */
+  transform: scaleY(-1);
+}
+
+.site-footer__top-label {
+  font: 400 14px/1.5 var(--font-primary);
+  color: var(--color-paper-50);
+  white-space: nowrap;
+}
