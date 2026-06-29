@@ -1,0 +1,302 @@
+/* ===========================================================================
+   Projects — a pink section that introduces the case studies, then stacks three
+   full-width project cards. Each card opens with a folder-style tab (a colored
+   trapezoid with 45° chamfered top corners, positioned left / centre / right per
+   project) that sits flush above a two-column body: copy + tags on the left, a
+   media panel on the right. The tab and body share the project's accent colour.
+   =========================================================================== */
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-6xl) 50px;
+  background: var(--color-pink-600);
+  border-bottom: 1px solid rgba(254, 254, 254, 0.2);
+}
+
+/* --- Header -------------------------------------------------------------- */
+.projects__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.projects__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin: 0;
+  font: italic 400 20px var(--font-primary);
+  color: var(--color-text-inverse);
+}
+
+.projects__star {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.projects__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(34px, 4.44vw, 64px);
+  line-height: 1.1;
+  color: var(--color-text-inverse);
+}
+
+.projects__intro {
+  margin: 0;
+  max-width: 900px;
+  font: 400 16px/2 var(--font-primary);
+  color: var(--color-text-inverse);
+}
+
+/* --- Card list ----------------------------------------------------------- */
+/* The cards stack as you scroll: each one pins to the top of the viewport, and
+   because the three tabs live in different thirds (left / centre / right) they
+   never overlap — so each newly-pinned card slots its tab beside the previous
+   ones, filling the band left-to-right while its body covers the card beneath.
+   No JS: it's pure `position: sticky`. */
+.projects__list {
+  display: block;
+  margin: var(--space-sm) 0 0;
+  padding: 0;
+  /* Trailing room inside the cards' containing block so the LAST card can pin
+     and hold the completed band for a beat, instead of unpinning the instant it
+     arrives (it's the final child, so without this its sticky range is zero). */
+  padding-bottom: 100vh;
+  list-style: none;
+}
+
+.project {
+  position: sticky;
+  top: 0;
+  /* Each card owns a viewport of scroll, so the next one rises to cover it. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* Accent colour shared by the tab + body; overridden per project below. */
+  --project-accent: var(--color-periwinkle-500);
+}
+
+.project--periwinkle { --project-accent: var(--color-periwinkle-500); }
+.project--lime       { --project-accent: var(--color-lime); }
+.project--orange     { --project-accent: var(--color-orange); }
+
+/* --- Tab ----------------------------------------------------------------- */
+.project__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3xs);
+  width: 33.333%;
+  min-height: 56px;
+  padding: var(--space-sm) var(--space-xl);
+  background: var(--project-accent);
+  /* Chamfer the top corners 56px (45°); which corners depends on position. */
+  clip-path: polygon(56px 0, calc(100% - 56px) 0, 100% 100%, 0 100%);
+}
+
+.project--tab-left .project__tab {
+  margin-right: auto;
+  /* Flat left edge (flush with card edge); only the right corner is chamfered.
+     Pad the right so the label still centres over the flat top. */
+  padding-right: calc(var(--space-xl) + 56px);
+  clip-path: polygon(0 0, calc(100% - 56px) 0, 100% 100%, 0 100%);
+}
+
+.project--tab-center .project__tab {
+  margin-inline: auto;
+}
+
+.project--tab-right .project__tab {
+  margin-left: auto;
+  padding-left: calc(var(--space-xl) + 56px);
+  clip-path: polygon(56px 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.project__tab-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.project__tab-label {
+  font: italic 600 16px var(--font-primary);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* --- Body ---------------------------------------------------------------- */
+.project__body {
+  display: flex;
+  flex: 1;
+  gap: 50px;
+  padding: 50px;
+  min-height: 720px;
+  /* Centre the 620px content block within the viewport-tall card. */
+  align-items: center;
+  background: var(--project-accent);
+  overflow: clip;
+}
+
+.project__main {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  height: 620px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-2xl);
+}
+
+.project__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xl);
+}
+
+.project__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 4.44vw, 64px);
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+.project__desc {
+  margin: 0;
+  max-width: 560px;
+  font: 400 20px/2 var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+.project__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs);
+  border-bottom: 1px solid var(--color-border-strong);
+  font: 500 14px var(--font-primary);
+  text-transform: capitalize;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: gap var(--dur-fast) var(--ease-out-soft);
+}
+
+.project__link:hover {
+  gap: var(--space-sm);
+}
+
+.project__link-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  /* The Figma "send" glyph is flipped to point up-and-out (↗). */
+  transform: scaleX(-1);
+}
+
+/* --- Tags ---------------------------------------------------------------- */
+.project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project__tags li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xs) var(--space-lg);
+  border: 1px solid var(--color-paper-50);
+  border-radius: 4px;
+  background: var(--color-surface-mid);
+  font: 500 16px var(--font-primary);
+  text-transform: capitalize;
+  color: var(--color-text-inverse);
+  white-space: nowrap;
+}
+
+/* --- Media panel --------------------------------------------------------- */
+.project__media {
+  flex: 1 0 0;
+  min-width: 0;
+  max-width: 615px;
+  height: 620px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.project__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+/* Below the two-column breakpoint the stacking scroll would mean very tall,
+   awkward cards, so fall back to a plain vertical stack of static cards. */
+@media (max-width: 900px) {
+  .projects {
+    padding: var(--space-5xl) var(--space-lg);
+  }
+
+  .projects__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    padding-bottom: 0;
+  }
+
+  .project {
+    position: static;
+    min-height: 0;
+  }
+
+  .project__tab {
+    width: 60%;
+  }
+
+  .project__body {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding: var(--space-lg);
+    gap: var(--space-xl);
+  }
+
+  .project__main {
+    height: auto;
+  }
+
+  .project__media {
+    /* Drop flex sizing so aspect-ratio can drive the height once stacked. */
+    flex: none;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 595 / 620;
+  }
+}
+
+/* Honour reduced-motion: drop the scroll-driven pinning for a static stack. */
+@media (prefers-reduced-motion: reduce) {
+  .projects__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    padding-bottom: 0;
+  }
+
+  .project {
+    position: static;
+    min-height: 0;
+  }
+}
