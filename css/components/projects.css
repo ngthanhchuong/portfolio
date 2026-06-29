@@ -73,8 +73,10 @@
 .project {
   position: sticky;
   top: 0;
-  /* Each card owns a viewport of scroll, so the next one rises to cover it. */
-  min-height: 100vh;
+  /* 200vh of scroll per card: the body fills the first viewport (so each
+     project sits alone, full-screen, for ~one screen of scrolling) and the
+     second viewport is the runway over which the next card rises to cover it. */
+  min-height: 200vh;
   display: flex;
   flex-direction: column;
   /* Accent colour shared by the tab + body; overridden per project below. */
@@ -132,11 +134,13 @@
 /* --- Body ---------------------------------------------------------------- */
 .project__body {
   display: flex;
-  flex: 1;
+  /* Don't grow into the card's 200vh — the body is the visible panel and must
+     stay exactly one viewport tall; the extra scroll runway sits empty below. */
+  flex: none;
   gap: 50px;
   padding: 50px;
-  min-height: 720px;
-  /* Centre the 620px content block within the viewport-tall card. */
+  min-height: max(720px, calc(100vh - 56px));
+  /* Centre the 620px content block within the viewport-tall panel. */
   align-items: center;
   background: var(--project-accent);
   overflow: clip;
@@ -299,5 +303,10 @@
   .project {
     position: static;
     min-height: 0;
+  }
+
+  .project__body {
+    /* No viewport-tall runway when the cards aren't pinning. */
+    min-height: 720px;
   }
 }
