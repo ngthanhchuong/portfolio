@@ -180,7 +180,9 @@
 
 .project__desc {
   margin: 0;
-  max-width: 560px;
+  /* Fill the content column instead of a fixed 560px cap, so short lines like
+     Raven's don't wrap awkwardly (e.g. "place." dropping to its own line). */
+  max-width: 100%;
   font: 400 20px/2 var(--font-primary);
   color: var(--color-text-primary);
 }
